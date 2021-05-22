@@ -25,7 +25,7 @@ class NotifierEngine():
         return stateNames
 
 
-    def getStateIDFromStateNames(self, stateName: str) -> int:
+    def getStateID(self, stateName: str) -> int:
         statesList = self.getStatesList()
         
         for state in statesList:
@@ -34,7 +34,36 @@ class NotifierEngine():
 
         return -1
 
-     
-notifierEngine = NotifierEngine()
-print(notifierEngine.getStateIDFromStateNames("Madhya Pradesh"))
 
+    def getDistricts(self, stateID: int) -> list:
+        URL = "https://cdn-api.co-vin.in/api/v2/admin/location/districts/" + str(stateID)
+        response = requests.get(URL, headers = self.header)
+        return response.json()["districts"]
+
+    
+    def getDistrictNames(self, stateID: int) -> list:
+        districtsList = self.getDistricts(stateID)
+        districtNames = []
+
+        for district in districtsList:
+            districtNames.append(district["district_name"])
+
+        return districtNames
+
+    
+    def getDistrictID(self, stateID: int, districtName: str) -> int:
+        districtsList = self.getDistricts(stateID)
+
+        for district in districtsList:
+            if district["district_name"] == districtName:
+                return district["district_id"]
+
+        return -1
+            
+
+notifierEngine = NotifierEngine()
+check1 = notifierEngine.getDistrictNames(20)
+check2 = notifierEngine.getDistrictID(20, "Gwalior")
+print(check1,check2)
+print(type(check1))
+print(type(check2))
