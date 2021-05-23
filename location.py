@@ -38,7 +38,7 @@ class Location:
         return response.json()["districts"]
 
     
-    def getDistrictNames(self, stateID: int) -> list:
+    def getDistrictsNames(self, stateID: int) -> list:
         districtsList = self.getDistricts(stateID)
         districtNames = []
 

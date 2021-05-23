@@ -3,13 +3,12 @@ from location import Location
 class NotifierService:
 
     def __init__(self):
-        pass
+        self.location = Location()
 
+    
     def execute(self, stateName: str, districtName: str, pincode: int, age: int, inputDate: str, vaccineType: str, dose: int) -> list:
-        location = Location()
-
-        stateID     = location.getStateID(stateName)
-        districtID  = location.getDistrictID(stateID, districtName)
+        stateID     = self.location.getStateID(stateName)
+        districtID  = self.location.getDistrictID(stateID, districtName)
 
         if districtID != -1:
             """ Fetching Data By District ID """
@@ -25,3 +24,9 @@ class NotifierService:
         return notifierEngine.availability(centersList, age, inputDate, vaccineType, dose)
     
 
+    def getAllStates(self) -> list:
+        return self.location.getStatesNames()
+
+    
+    def getAllDistricts(self, stateID :int) -> list:
+        return self.location.getDistrictsNames(stateID)
