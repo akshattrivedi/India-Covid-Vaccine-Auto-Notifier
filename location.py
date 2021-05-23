@@ -58,9 +58,9 @@ class Location:
         return -1
             
 
-location = Location()
-check1 = location.getDistrictNames(20)
-check2 = location.getDistrictID(20, "Gwalior")
-print(check1,check2)
-print(type(check1))
-print(type(check2))
+# location = Location()
+# check1 = location.getDistrictNames(20)
+# check2 = location.getDistrictID(20, "Gwalior")
+# print(check1,check2)
+# print(type(check1))
+# print(type(check2))

@@ -56,29 +56,29 @@ class NotifierEngine:
 
 
 
-if __name__ == "__main__":
-    districtID = 312
-    pincode = 462003
-    age = 50
-    inputDate = "24-05-2021"
-    vaccineType = "COVAXIN"
-    dose = 2
+# if __name__ == "__main__":
+#     districtID = 312
+#     pincode = 462003
+#     age = 50
+#     inputDate = "24-05-2021"
+#     vaccineType = "COVAXIN"
+#     dose = 2
 
-    notifierEngine = NotifierEngine()
+#     notifierEngine = NotifierEngine()
 
-    if districtID != -1:
-        """ Fetching Data By District ID """
-        centersList = notifierEngine.fetchDataByDistrictID(districtID)
+#     if districtID != -1:
+#         """ Fetching Data By District ID """
+#         centersList = notifierEngine.fetchDataByDistrictID(districtID)
 
-    elif int(pincode/100000) != 0 and int(pincode/1000000) == 0:
-        """ India's PIN Code is a 6 Digit Number """
-        centersList = notifierEngine.fetchDataByPINCode(pincode)
+#     elif int(pincode/100000) != 0 and int(pincode/1000000) == 0:
+#         """ India's PIN Code is a 6 Digit Number """
+#         centersList = notifierEngine.fetchDataByPINCode(pincode)
 
-    else:
-        print("Input Error!")
+#     else:
+#         print("Input Error!")
 
 
-    availability = notifierEngine.availability(centersList, age, inputDate, vaccineType, dose)
-    print(availability)
-    print(len(availability))
+#     availability = notifierEngine.availability(centersList, age, inputDate, vaccineType, dose)
+#     print(availability)
+#     print(len(availability))
     
