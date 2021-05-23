@@ -61,9 +61,9 @@ if __name__ == "__main__":
     districtID = 312
     pincode = 462003
     age = 50
-    inputDate = "22-05-2021"
-    vaccineType = "COVISHIELD"
-    dose = 1
+    inputDate = "24-05-2021"
+    vaccineType = "COVAXIN"
+    dose = 2
 
     notifierEngine = NotifierEngine()
 
@@ -81,4 +81,5 @@ if __name__ == "__main__":
 
     availability = notifierEngine.availability(centersList, age, inputDate, vaccineType, dose)
     print(availability)
+    print(len(availability))
     
