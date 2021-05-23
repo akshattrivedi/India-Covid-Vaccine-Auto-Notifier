@@ -1,3 +1,8 @@
+"""
+    Author: Akshat Trivedi
+    Python Version: 3.9.2
+"""
+
 import requests
 from datetime import date
 
@@ -17,7 +22,7 @@ class NotifierEngine:
             for session in sessions:
                 if (dose == 1 and session["available_capacity_dose1"] > 0) or (dose == 2 and session["available_capacity_dose2"] > 0) or (dose == 0 and session["available_capacity"] > 0):
                     """ dose = 0 -> all the doses (dose1 and dose2) """
-                    if self.ageCategory(age) == session["min_age_limit"] or age == 0:
+                    if self.ageGroup(age) == session["min_age_limit"] or age == 0:
                         """ age = 0 -> all the ages are accepted """
                         if inputDate == session["date"] or inputDate == "0":
                             """ inputDate = 0 -> all the future upcoming dates """
@@ -43,8 +48,8 @@ class NotifierEngine:
         today = date.today()
         return today.strftime("%d-%m-%Y")
 
-    def ageCategory(self, age: int) -> int:
-        """ Age Category is decided by Minimum age Limit """
+    def ageGroup(self, age: int) -> int:
+        """ Age Group is decided by Minimum age Limit """
         if age >= 45: 
             return 45
         elif age >= 18 and age < 45:

@@ -1,3 +1,16 @@
 {
-    "vaccineTypes": ["COVAXIN", "COVISHIELD", "SPUTNIK V"]
+    "ages": [
+        3,
+        18,
+        45
+    ],
+    "vaccineTypes": [
+        "COVAXIN",
+        "COVISHIELD",
+        "SPUTNIK V"
+    ],
+    "doses": [
+        1,
+        2
+    ]
 }

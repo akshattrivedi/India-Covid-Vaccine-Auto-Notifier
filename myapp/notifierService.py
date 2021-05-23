@@ -1,11 +1,15 @@
+"""
+    Author: Akshat Trivedi
+    Python Version: 3.9.2
+"""
+
 from myapp.location import Location
-from myapp.config import Config
+from myapp.config import configs
 
 class NotifierService:
 
     def __init__(self):
         self.location = Location()
-        self.config = Config()
 
     
     def execute(self, stateName: str, districtName: str, pincode: int, age: int, inputDate: str, vaccineType: str, dose: int) -> list:
@@ -30,9 +34,16 @@ class NotifierService:
         return self.location.getStatesNames()
 
     
-    def getAllDistricts(self, stateID :int) -> list:
+    def getAllDistricts(self, stateName :str) -> list:
+        stateID = self.location.getStateID(stateName)
         return self.location.getDistrictsNames(stateID)
 
 
     def getAllVaccines(self) -> list:
-        return self.config.data["vaccineTypes"]
+        return configs.data["vaccineTypes"]
+
+    def getAllDoses(self) -> list:
+        return configs.data["doses"]
+
+    def getAllAges(self) -> list:
+        return configs.data["ages"]

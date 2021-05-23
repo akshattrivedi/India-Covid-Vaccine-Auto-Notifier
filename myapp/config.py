@@ -1,3 +1,8 @@
+"""
+    Author: Akshat Trivedi
+    Python Version: 3.9.2
+"""
+
 import json
 
 class Config:
@@ -15,4 +20,6 @@ class Config:
             raise Exception ("This is a Singleton Configuration Class!")
         else:
             Config.__instance = self
-            self.data = json.load(open("config.json"))
+            self.data = json.load(open("myapp/config.json"))
+
+configs = Config()
