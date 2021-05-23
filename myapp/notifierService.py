@@ -1,9 +1,11 @@
-from location import Location
+from myapp.location import Location
+from myapp.config import Config
 
 class NotifierService:
 
     def __init__(self):
         self.location = Location()
+        self.config = Config()
 
     
     def execute(self, stateName: str, districtName: str, pincode: int, age: int, inputDate: str, vaccineType: str, dose: int) -> list:
@@ -30,3 +32,7 @@ class NotifierService:
     
     def getAllDistricts(self, stateID :int) -> list:
         return self.location.getDistrictsNames(stateID)
+
+
+    def getAllVaccines(self) -> list:
+        return self.config.data["vaccineTypes"]
