@@ -41,10 +41,10 @@ def index(request):
         print("Dose:",dose,type(dose))
         print()
 
-        print(notifierService.execute(stateName, districtName, pincode, age, inputDate, vaccineType, dose))
+        slots = notifierService.execute(stateName, districtName, pincode, age, inputDate, vaccineType, dose)
 
         context = { "states": states, "ages": ages, "vaccines": vaccines, "doses": doses, "stateSelected": stateName, "districtSelected": districtName,
-        "pincodeEntered": pincode, "ageSelected": age, "dateSelected": inputDate, "vaccineTypeSelected": vaccineType, "doseSelected": dose}
+        "pincodeEntered": pincode, "ageSelected": age, "dateSelected": inputDate, "vaccineTypeSelected": vaccineType, "doseSelected": dose, "slots" : slots}
         return render(request,'myapp/index.html', context)
     else:
         context = { "states": states, "ages": ages, "vaccines": vaccines, "doses": doses}

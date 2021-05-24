@@ -28,6 +28,14 @@ class NotifierEngine:
                             """ inputDate = "" -> all the future upcoming dates """
                             if vaccineType == session["vaccine"] or vaccineType == "":
                                 """ vaccineType = "" -> all the vaccines are accepted """
+                                center.pop("center_id","")
+                                center.pop("lat","")
+                                center.pop("long","")
+                                center.pop("from","")
+                                center.pop("to","")
+                                session.pop("session_id","")
+                                session.pop("slots","")
+
                                 availabilityList.append(center)
 
         return availabilityList
