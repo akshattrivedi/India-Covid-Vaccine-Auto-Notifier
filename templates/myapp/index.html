@@ -83,13 +83,17 @@
                                         <div class="input-group">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select id="state" name="state">
-                                                    {% if stateSelected %}
-                                                    <option disabled="disabled" selected="selected">{{ stateSelected }} </option>
-                                                    {% else %}
-                                                    <option disabled="disabled" selected="selected">Choose State </option>
+                                                    {% if not stateSelected %}
+                                                    <option disabled="disabled" selected="selected">Choose State</option>
                                                     {% endif %}
+
                                                     {% for state in states %}
+                                                    {% ifequal state stateSelected %}
+                                                    <option selected="selected">{{ stateSelected }} </option>
+                                                    {% else %}
                                                     <option value="{{ state }}">{{ state }}</option>
+                                                    {% endifequal %}
+
                                                     {% endfor %}
                                                 </select>
                                                 <div class="select-dropdown"></div>
@@ -109,7 +113,8 @@
                                                     {% if districtSelected %}
                                                     <option disabled="disabled" selected="selected">{{ districtSelected }} </option>
                                                     {% else %}
-                                                    <option disabled="disabled" selected="selected">Choose District </option>
+                                                    <option disabled="disabled" selected="selected">Choose District
+                                                    </option>
                                                     {% endif %}
                                                     {% for district in districts %}
                                                     <option value="{{ district }}">{{ district }}</option>
@@ -147,13 +152,16 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="age">
-                                            {% if ageSelected %}
-                                            <option disabled="disabled" selected="selected">{{ ageSelected }}+</option>
-                                            {% else %}
+                                            {% if not ageSelected %}
                                             <option disabled="disabled" selected="selected">Choose Age Group</option>
                                             {% endif %}
+
                                             {% for age in ages %}
+                                            {% ifequal age ageSelected %}
+                                            <option selected="selected" value="{{ ageSelected }}">{{ ageSelected }}+</option>
+                                            {% else %}
                                             <option value="{{ age }}">{{ age }}+</option>
+                                            {% endifequal %}
                                             {% endfor %}
                                         </select>
                                         <div class="select-dropdown"></div>
@@ -181,13 +189,16 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="vaccineType">
-                                            {% if vaccineTypeSelected %}
-                                            <option disabled="disabled" selected="selected">{{ vaccineTypeSelected }}</option>
-                                            {% else %}
+                                            {% if not vaccineTypeSelected %}
                                             <option disabled="disabled" selected="selected">Choose Vaccine Type</option>
                                             {% endif %}
+
                                             {% for vaccine in vaccines %}
+                                            {% ifequal vaccine vaccineTypeSelected %}
+                                            <option selected="selected">{{ vaccineTypeSelected }} </option>
+                                            {% else %}
                                             <option value="{{ vaccine }}">{{ vaccine }}</option>
+                                            {% endifequal %}
                                             {% endfor %}
                                         </select>
                                         <div class="select-dropdown"></div>
@@ -202,13 +213,16 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="dose">
-                                            {% if doseSelected %}
-                                            <option disabled="disabled" selected="selected">{{ doseSelected }}</option>
-                                            {% else %}
+                                            {% if not doseSelected %}
                                             <option disabled="disabled" selected="selected">Choose Dose Number</option>
                                             {% endif %}
+
                                             {% for dose in doses %}
+                                            {% ifequal dose doseSelected %}
+                                            <option selected="selected">{{ doseSelected }}</option>
+                                            {% else %}
                                             <option value="{{ dose }}">{{ dose }}</option>
+                                            {% endifequal %}
                                             {% endfor %}
                                         </select>
                                         <div class="select-dropdown"></div>
