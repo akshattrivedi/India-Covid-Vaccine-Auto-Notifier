@@ -21,7 +21,11 @@ from myapp import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
+    # Page Renderers
     path('',views.index,name='index'),
+
+    # APIs
+    path('api/getAllDistricts',views.getAllDistricts,name='getAllDistricts')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
