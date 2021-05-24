@@ -26,6 +26,9 @@
 
     <!-- Main CSS-->
     <link href="{% static 'css/main.css' %}" rel="stylesheet" media="all">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
 
 <body>
@@ -36,17 +39,33 @@
                     <h2 class="title">India Covid Vaccine Notifier</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{% url 'index' %}" method="get" id="mainform">
+                    <form action="{% url 'index' %}" method="POST" id="mainform">
                         {% csrf_token %}
                         <div class="form-row p-t-20">
                             <label class="label label--block">Search By:</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Region
-                                    <input type="radio" checked="checked" name="exist">
+                                    <input type="radio" checked="checked" name="search" value="region">
                                     <span class="checkmark"></span>
                                 </label>
-                                <label class="radio-container">Pincode
-                                    <input type="radio" name="exist">
+                                <label class="radio-container m-r-55">Pincode
+                                    <input type="radio" name="search" value="pincode">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio-container m-r-55">Age
+                                    <input type="checkbox" checked="checked" id="cb-age" value="cb-age">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio-container m-r-55">Date
+                                    <input type="checkbox" checked="checked" id="cb-date" value="cb-date">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio-container m-r-55">Vaccine Type
+                                    <input type="checkbox" checked="checked" id="cb-vaccine-type" value="cb-vaccine-type">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio-container m-r-55">Dose
+                                    <input type="checkbox" checked="checked" id="cb-dose" value="cb-dose">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -109,12 +128,12 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row" id="form-age">
                             <div class="name">Age</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="age">
                                             <option disabled="disabled" selected="selected">Choose Age Group</option>
                                             {% for age in ages %}
                                             <option value="{{ age }}">{{ age }}+</option>
@@ -126,7 +145,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row" id="form-date">
                             <div class="name">Date</div>
                             <div class="value">
                                 <div class="input-group">
@@ -135,12 +154,12 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row" id="form-vaccine-type">
                             <div class="name">Vaccine Type</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="vaccineType">
                                             <option disabled="disabled" selected="selected">Choose Vaccine Type</option>
                                             {% for vaccine in vaccines %}
                                             <option value="{{ vaccine }}">{{ vaccine }}</option>
@@ -152,12 +171,12 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row" id="form-dose">
                             <div class="name">Dose</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="subject">
+                                        <select name="dose">
                                             <option disabled="disabled" selected="selected">Choose Dose Number</option>
                                             {% for dose in doses %}
                                             <option value="{{ dose }}">{{ dose }}</option>
@@ -188,18 +207,6 @@
     <!-- Main JS-->
     <script src="{% static 'js/global.js' %}"></script>
 
-    <script>
-        $('button').click(function () {
-            // $('#mainform').submit()
-            debugger
-            $.get("http://localhost:8000", function (data) {
-                debugger
-                console.log(data)
-            });
-        });
-    </script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>
-<!-- end document-->

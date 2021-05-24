@@ -69,8 +69,47 @@
 
 })(jQuery);
 
-$('button').click(function () {
-    // $('#mainform').submit()
-    debugger
-    console.log("Check State Change")
+// API Call for Getting All Districts
+$(function () {
+    $('#state').change(function () {
+        $.get("http://localhost:8000/api/getAllDistricts?state=" + $(this).val(), function (data, status) {
+            $('#district').empty()
+            for (var i = 0; i < data["districts"].length; i++) {
+                $('#district').append($('<option>').text(data["districts"][i]).attr('value', data["districts"][i]));
+            }
+        });
+    });
 });
+
+// Show/Hide Fields Based on Check Boxes
+$(document).ready(function () {
+    $("#cb-age").click(function () {
+        if ($("#cb-age").is(':checked'))
+            $("#form-age").show();
+        else
+            $("#form-age").hide();
+    });
+
+    $("#cb-date").click(function () {
+        if ($("#cb-date").is(':checked'))
+            $("#form-date").show();
+        else
+            $("#form-date").hide();
+    });
+
+    $("#cb-vaccine-type").click(function () {
+        if ($("#cb-vaccine-type").is(':checked'))
+            $("#form-vaccine-type").show();
+        else
+            $("#form-vaccine-type").hide();
+    });
+
+    $("#cb-dose").click(function () {
+        if ($("#cb-dose").is(':checked'))
+            $("#form-dose").show();
+        else
+            $("#form-dose").hide();
+    });
+});
+
+
