@@ -24,10 +24,10 @@ class NotifierEngine:
                     """ dose = 0 -> all the doses (dose1 and dose2) """
                     if self.ageGroup(age) == session["min_age_limit"] or age == 0:
                         """ age = 0 -> all the ages are accepted """
-                        if inputDate == session["date"] or inputDate == "0":
-                            """ inputDate = 0 -> all the future upcoming dates """
-                            if vaccineType == session["vaccine"] or vaccineType == "0":
-                                """ vaccineType = 0 -> all the vaccines are accepted """
+                        if inputDate == session["date"] or inputDate == "":
+                            """ inputDate = "" -> all the future upcoming dates """
+                            if vaccineType == session["vaccine"] or vaccineType == "":
+                                """ vaccineType = "" -> all the vaccines are accepted """
                                 availabilityList.append(center)
 
         return availabilityList
@@ -39,7 +39,7 @@ class NotifierEngine:
         return response.json()["centers"]
 
     def fetchDataByPINCode(self, pincode: int) -> dict:
-        URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + str(self.pincode) + "&date=" + self.currentDate()
+        URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + str(pincode) + "&date=" + self.currentDate()
         response = requests.get(URL, headers = self.header)
         return response.json()["centers"]
 

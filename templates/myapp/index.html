@@ -45,32 +45,34 @@
                             <label class="label label--block">Search By:</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Region
-                                    <input type="radio" checked="checked" name="search" value="region">
+                                    <input type="radio" name="search" id="rdb-region" value="region" checked="checked">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container m-r-55">Pincode
-                                    <input type="radio" name="search" value="pincode">
+                                    <input type="radio" name="search" id="rdb-pincode" value="pincode">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container m-r-55">Age
-                                    <input type="checkbox" checked="checked" id="cb-age" value="cb-age">
+                                    <input type="checkbox" id="cb-age" value="cb-age" checked="checked">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container m-r-55">Date
-                                    <input type="checkbox" checked="checked" id="cb-date" value="cb-date">
+                                    <input type="checkbox" id="cb-date" value="cb-date" checked="checked">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container m-r-55">Vaccine Type
-                                    <input type="checkbox" checked="checked" id="cb-vaccine-type" value="cb-vaccine-type">
+                                    <input type="checkbox" id="cb-vaccine-type" value="cb-vaccine-type"
+                                        checked="checked">
                                     <span class="checkmark"></span>
                                 </label>
-                                <label class="radio-container m-r-55">Dose
-                                    <input type="checkbox" checked="checked" id="cb-dose" value="cb-dose">
+                                <label class="radio-container">Dose
+                                    <input type="checkbox" id="cb-dose" value="cb-dose" checked="checked">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                         </div>
-                        <div class="form-row">
+
+                        <div class="form-row" id="form-region">
                             <div class="name">Region</div>
                             <div class="value">
                                 <div class="row row-space">
@@ -81,8 +83,11 @@
                                         <div class="input-group">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select id="state" name="state">
-                                                    <option disabled="disabled" selected="selected">Choose State
-                                                    </option>
+                                                    {% if stateSelected %}
+                                                    <option disabled="disabled" selected="selected">{{ stateSelected }} </option>
+                                                    {% else %}
+                                                    <option disabled="disabled" selected="selected">Choose State </option>
+                                                    {% endif %}
                                                     {% for state in states %}
                                                     <option value="{{ state }}">{{ state }}</option>
                                                     {% endfor %}
@@ -101,8 +106,11 @@
                                         <div class="input-group">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select id="district" name="district">
-                                                    <option disabled="disabled" selected="selected">Choose District
-                                                    </option>
+                                                    {% if districtSelected %}
+                                                    <option disabled="disabled" selected="selected">{{ districtSelected }} </option>
+                                                    {% else %}
+                                                    <option disabled="disabled" selected="selected">Choose District </option>
+                                                    {% endif %}
                                                     {% for district in districts %}
                                                     <option value="{{ district }}">{{ district }}</option>
                                                     {% endfor %}
@@ -118,12 +126,17 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row" id="form-pincode">
                             <div class="name">Pincode</div>
                             <div class="value">
                                 <div class="input-group">
+                                    {% if pincodeEntered %}
+                                    <input class="input--style-5" type="number" step="1" name="pincode"
+                                        value="{{ pincodeEntered }}" placeholder="Enter Pincode">
+                                    {% else %}
                                     <input class="input--style-5" type="number" step="1" name="pincode"
                                         placeholder="Enter Pincode">
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -134,7 +147,11 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="age">
+                                            {% if ageSelected %}
+                                            <option disabled="disabled" selected="selected">{{ ageSelected }}+</option>
+                                            {% else %}
                                             <option disabled="disabled" selected="selected">Choose Age Group</option>
+                                            {% endif %}
                                             {% for age in ages %}
                                             <option value="{{ age }}">{{ age }}+</option>
                                             {% endfor %}
@@ -149,7 +166,11 @@
                             <div class="name">Date</div>
                             <div class="value">
                                 <div class="input-group">
+                                    {% if dateSelected %}
+                                    <input class="input--style-5" type="date" name="date" value="{{ dateSelected }}">
+                                    {% else %}
                                     <input class="input--style-5" type="date" name="date">
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -160,7 +181,11 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="vaccineType">
+                                            {% if vaccineTypeSelected %}
+                                            <option disabled="disabled" selected="selected">{{ vaccineTypeSelected }}</option>
+                                            {% else %}
                                             <option disabled="disabled" selected="selected">Choose Vaccine Type</option>
+                                            {% endif %}
                                             {% for vaccine in vaccines %}
                                             <option value="{{ vaccine }}">{{ vaccine }}</option>
                                             {% endfor %}
@@ -177,7 +202,11 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="dose">
+                                            {% if doseSelected %}
+                                            <option disabled="disabled" selected="selected">{{ doseSelected }}</option>
+                                            {% else %}
                                             <option disabled="disabled" selected="selected">Choose Dose Number</option>
+                                            {% endif %}
                                             {% for dose in doses %}
                                             <option value="{{ dose }}">{{ dose }}</option>
                                             {% endfor %}

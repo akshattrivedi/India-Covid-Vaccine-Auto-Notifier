@@ -81,8 +81,32 @@ $(function () {
     });
 });
 
-// Show/Hide Fields Based on Check Boxes
+// Show/Hide Form Fields Based on Check Boxes
 $(document).ready(function () {
+    $("#form-pincode").hide();
+
+    $("#rdb-region").click(function () {
+        if ($("#rdb-region").is(':checked')){
+            $("#form-region").show();
+            $("#form-pincode").hide();
+        }
+        else{
+            $("#form-region").hide();
+            $("#form-pincode").show();
+        }
+    });
+
+    $("#rdb-pincode").click(function () {
+        if ($("#rdb-pincode").is(':checked')){
+            $("#form-pincode").show();
+            $("#form-region").hide();
+        }
+        else{
+            $("#form-pincode").hide();
+            $("#form-region").show();
+        }
+    });
+
     $("#cb-age").click(function () {
         if ($("#cb-age").is(':checked'))
             $("#form-age").show();

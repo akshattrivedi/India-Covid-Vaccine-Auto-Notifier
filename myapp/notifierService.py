@@ -5,6 +5,7 @@
 
 from myapp.location import Location
 from myapp.config import configs
+from myapp.notifierEngine import NotifierEngine
 
 class NotifierService:
 
@@ -13,6 +14,7 @@ class NotifierService:
 
     
     def execute(self, stateName: str, districtName: str, pincode: int, age: int, inputDate: str, vaccineType: str, dose: int) -> list:
+        notifierEngine = NotifierEngine()
         stateID     = self.location.getStateID(stateName)
         districtID  = self.location.getDistrictID(stateID, districtName)
 
@@ -25,7 +27,7 @@ class NotifierService:
             centersList = notifierEngine.fetchDataByPINCode(pincode)
 
         else:
-            print("Input Error!")
+            return ["Input Error!"]
 
         return notifierEngine.availability(centersList, age, inputDate, vaccineType, dose)
     
