@@ -5,6 +5,7 @@
 
 import requests
 from datetime import date
+import datetime
 
 class NotifierEngine:
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
@@ -15,6 +16,7 @@ class NotifierEngine:
 
     def availability(self, centers: list, age: int, inputDate: str, vaccineType: str, dose: int) -> list: 
         availabilityList = []
+        inputDate = self.changeDateFormat(inputDate)
 
         for center in centers:
             sessions = center["sessions"]
@@ -55,6 +57,12 @@ class NotifierEngine:
         """ Fetches the Today's Date in the Given Format """
         today = date.today()
         return today.strftime("%d-%m-%Y")
+
+    def changeDateFormat(self, inputDate: str) -> str:
+        if inputDate == "":
+            return ""
+        else:
+            return datetime.datetime.strptime(inputDate, '%Y-%m-%d').strftime('%d-%m-%Y')
 
     def ageGroup(self, age: int) -> int:
         """ Age Group is decided by Minimum age Limit """
