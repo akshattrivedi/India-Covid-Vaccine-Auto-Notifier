@@ -1,3 +1,5 @@
+var configJSON = JSON.parse(config);
+
 (function ($) {
     'use strict';
     /*==================================================================
@@ -69,10 +71,10 @@
 
 })(jQuery);
 
-// API Call for Getting All Districts
+// API Call for Getting All Districts When State is Selected
 $(function () {
     $('#state').change(function () {
-        $.get("http://localhost:8000/api/getAllDistricts?state=" + $(this).val(), function (data, status) {
+        $.get("http://localhost:8000/api/getAllDistricts?state=" + $(this).val(), function (data) {
             $('#district').empty()
             for (var i = 0; i < data["districts"].length; i++) {
                 $('#district').append($('<option>').text(data["districts"][i]).attr('value', data["districts"][i]));
@@ -81,27 +83,45 @@ $(function () {
     });
 });
 
+// API Call for Finding Slots
+$(document).ready(function () {
+    setInterval(function () {
+        $.get('http://localhost:8000/api/getSlots', {
+            state: $('#state').val(),
+            district: $('#district').val(),
+            pincode: $('#pincode').val(),
+            age: $('#age').val(),
+            date: $('#date').val(),
+            vaccineType: $('#vaccineType').val(),
+            dose: $('#dose').val()
+        },
+            function (data) {
+                console.log(data["slots"])
+            });
+    }, configJSON.autoRefresh);
+});
+
 // Show/Hide Form Fields Based on Check Boxes
 $(document).ready(function () {
     $("#form-pincode").hide();
 
     $("#rdb-region").click(function () {
-        if ($("#rdb-region").is(':checked')){
+        if ($("#rdb-region").is(':checked')) {
             $("#form-region").show();
             $("#form-pincode").hide();
         }
-        else{
+        else {
             $("#form-region").hide();
             $("#form-pincode").show();
         }
     });
 
     $("#rdb-pincode").click(function () {
-        if ($("#rdb-pincode").is(':checked')){
+        if ($("#rdb-pincode").is(':checked')) {
             $("#form-pincode").show();
             $("#form-region").hide();
         }
-        else{
+        else {
             $("#form-pincode").hide();
             $("#form-region").show();
         }

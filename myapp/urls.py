@@ -25,7 +25,8 @@ urlpatterns = [
     path('',views.index,name='index'),
 
     # APIs
-    path('api/getAllDistricts',views.getAllDistricts,name='getAllDistricts')
+    path('api/getAllDistricts',views.getAllDistricts,name='getAllDistricts'),
+    path('api/getSlots',views.getSlots,name='getSlots')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

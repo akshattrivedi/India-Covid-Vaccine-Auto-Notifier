@@ -29,6 +29,9 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <!-- Configuration JSON File -->
+    <script type="text/javascript" src="{% static 'config.json' %}"></script>
 </head>
 
 <body>
@@ -89,11 +92,10 @@
 
                                                     {% for state in states %}
                                                     {% ifequal state stateSelected %}
-                                                    <option selected="selected">{{ stateSelected }} </option>
+                                                    <option value="{{ stateSelected }}" selected="selected">{{ stateSelected }} </option>
                                                     {% else %}
                                                     <option value="{{ state }}">{{ state }}</option>
                                                     {% endifequal %}
-
                                                     {% endfor %}
                                                 </select>
                                                 <div class="select-dropdown"></div>
@@ -110,14 +112,16 @@
                                         <div class="input-group">
                                             <div class="rs-select2 js-select-simple select--no-search">
                                                 <select id="district" name="district">
-                                                    {% if districtSelected %}
-                                                    <option disabled="disabled" selected="selected">{{ districtSelected }} </option>
-                                                    {% else %}
-                                                    <option disabled="disabled" selected="selected">Choose District
-                                                    </option>
+                                                    {% if not districtSelected %}
+                                                    <option disabled="disabled" selected="selected">Choose District</option>
                                                     {% endif %}
+
                                                     {% for district in districts %}
+                                                    {% ifequal district districtSelected %}
+                                                    <option selected="selected">{{ districtSelected }} </option>
+                                                    {% else %}
                                                     <option value="{{ district }}">{{ district }}</option>
+                                                    {% endifequal %}
                                                     {% endfor %}
                                                 </select>
                                                 <div class="select-dropdown"></div>
@@ -151,7 +155,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="age">
+                                        <select name="age" id="age">
                                             {% if not ageSelected %}
                                             <option disabled="disabled" selected="selected">Choose Age Group</option>
                                             {% endif %}
@@ -175,9 +179,9 @@
                             <div class="value">
                                 <div class="input-group">
                                     {% if dateSelected %}
-                                    <input class="input--style-5" type="date" name="date" value="{{ dateSelected }}">
+                                    <input class="input--style-5" type="date" name="date" id="date" value="{{ dateSelected }}">
                                     {% else %}
-                                    <input class="input--style-5" type="date" name="date">
+                                    <input class="input--style-5" type="date" name="date" id="date">
                                     {% endif %}
                                 </div>
                             </div>
@@ -188,7 +192,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="vaccineType">
+                                        <select name="vaccineType" id="vaccineType">
                                             {% if not vaccineTypeSelected %}
                                             <option disabled="disabled" selected="selected">Choose Vaccine Type</option>
                                             {% endif %}
@@ -212,7 +216,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="dose">
+                                        <select name="dose" id="dose">
                                             {% if not doseSelected %}
                                             <option disabled="disabled" selected="selected">Choose Dose Number</option>
                                             {% endif %}
@@ -232,7 +236,7 @@
                         </div>
 
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Find Slots</button>
+                            <button class="btn btn--radius-2 btn--red" id="find-slots" type="submit">Find Slots</button>
                         </div>
                         <div>
                             <label class="label--desc">{{ slots }}</label>

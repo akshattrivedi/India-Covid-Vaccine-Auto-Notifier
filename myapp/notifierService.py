@@ -13,7 +13,7 @@ class NotifierService:
         self.location = Location()
 
     
-    def execute(self, stateName: str, districtName: str, pincode: int, age: int, inputDate: str, vaccineType: str, dose: int) -> list:
+    def findSlots(self, stateName: str, districtName: str, pincode: int, age: int, inputDate: str, vaccineType: str, dose: int) -> list:
         notifierEngine = NotifierEngine()
         stateID     = self.location.getStateID(stateName)
         districtID  = self.location.getDistrictID(stateID, districtName)
