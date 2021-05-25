@@ -84,21 +84,32 @@ $(function () {
 });
 
 // API Call for Finding Slots
-$(document).ready(function () {
-    setInterval(function () {
-        $.get('http://localhost:8000/api/getSlots', {
-            state: $('#state').val(),
-            district: $('#district').val(),
-            pincode: $('#pincode').val(),
-            age: $('#age').val(),
-            date: $('#date').val(),
-            vaccineType: $('#vaccineType').val(),
-            dose: $('#dose').val()
-        },
-            function (data) {
-                console.log(data["slots"])
-            });
-    }, configJSON.autoRefresh);
+$(function () {
+    $('#auto-refresh').click(function () {
+        var counter = configJSON.autoRefresh / 1000;
+        setInterval(function () {
+            counter--;
+            if (counter >= 0) {
+                document.getElementById('auto-refresh-label').innerHTML = "Auto Refreshing in " + counter + " seconds";
+            }
+            else {
+                $.get('http://localhost:8000/api/getSlots', {
+                    state: $('#state').val(),
+                    district: $('#district').val(),
+                    pincode: $('#pincode').val(),
+                    age: $('#age').val(),
+                    date: $('#date').val(),
+                    vaccineType: $('#vaccineType').val(),
+                    dose: $('#dose').val()
+                },
+                    function (data) {
+                        document.getElementById('slots-label').innerHTML = data["slots"];
+                    });
+                counter = configJSON.autoRefresh / 1000;
+                document.getElementById('auto-refresh-label').innerHTML = "Auto Refreshing in " + counter + " seconds";
+            }
+        }, 1000);
+    });
 });
 
 // Show/Hide Form Fields Based on Check Boxes
@@ -155,5 +166,3 @@ $(document).ready(function () {
             $("#form-dose").hide();
     });
 });
-
-

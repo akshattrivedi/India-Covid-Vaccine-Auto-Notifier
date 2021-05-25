@@ -238,10 +238,19 @@
                         <div>
                             <button class="btn btn--radius-2 btn--red" id="find-slots" type="submit">Find Slots</button>
                         </div>
-                        <div>
-                            <label class="label--desc">{{ slots }}</label>
-                        </div>
+                        <br>
                     </form>
+                    <div>
+                        <button class="btn btn--radius-2 btn--red" id="auto-refresh" type="submit">Auto Refresh</button>
+                    </div>
+
+                    <div>
+                        <label class="label--desc" id="auto-refresh-label"></label>
+                    </div>
+                    
+                    <div>
+                        <label class="label--desc" id="slots-label">Value: {{ slots }}</label>
+                    </div>
                 </div>
             </div>
         </div>

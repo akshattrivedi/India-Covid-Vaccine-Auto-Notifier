@@ -1,1 +1,1 @@
-config = '{"autoRefresh" : 60000}';
+config = '{"autoRefresh" : 5000}';
