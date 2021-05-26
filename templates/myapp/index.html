@@ -41,7 +41,11 @@
                 <div class="card-heading">
                     <h2 class="title">India Covid Vaccine Notifier</h2>
                 </div>
+               
                 <div class="card-body">
+                    <div style="text-align: center;">
+                        <label class="label--desc" id="auto-refresh-label"></label>
+                    </div>
                     <form action="{% url 'index' %}" method="POST" id="mainform">
                         {% csrf_token %}
                         <div class="form-row p-t-20">
@@ -140,10 +144,10 @@
                             <div class="value">
                                 <div class="input-group">
                                     {% if pincodeEntered %}
-                                    <input class="input--style-5" type="number" step="1" name="pincode"
+                                    <input class="input--style-5" type="number" step="1" name="pincode" id="pincode"
                                         value="{{ pincodeEntered }}" placeholder="Enter Pincode">
                                     {% else %}
-                                    <input class="input--style-5" type="number" step="1" name="pincode"
+                                    <input class="input--style-5" type="number" step="1" name="pincode" id="pincode"
                                         placeholder="Enter Pincode">
                                     {% endif %}
                                 </div>
@@ -244,12 +248,10 @@
                         <button class="btn btn--radius-2 btn--red" id="auto-refresh" type="submit">Auto Refresh</button>
                     </div>
 
-                    <div>
-                        <label class="label--desc" id="auto-refresh-label"></label>
-                    </div>
                     
-                    <div>
-                        <label class="label--desc" id="slots-label">{{ slots }}</label>
+                    
+                    <div class="container" id="slots-label">
+                        {{ slots }}
                     </div>
                 </div>
             </div>

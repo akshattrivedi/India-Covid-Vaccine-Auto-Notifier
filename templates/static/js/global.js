@@ -111,9 +111,9 @@ $(function () {
                             slotsTable += "<tr>";
                             slotsTable += "<th>" + "NAME" + "</th>";
                             slotsTable += "<th>" + "ADDRESS" + "</th>";
-                            slotsTable += "<th>" + "STATE NAME" + "</th>";
-                            slotsTable += "<th>" + "DISTRICT NAME" + "</th>";
-                            slotsTable += "<th>" + "BLOCK NAME" + "</th>";
+                            slotsTable += "<th>" + "STATE" + "</th>";
+                            slotsTable += "<th>" + "DISTRICT" + "</th>";
+                            slotsTable += "<th>" + "BLOCK" + "</th>";
                             slotsTable += "<th>" + "PINCODE" + "</th>";
                             slotsTable += "<th>" + "FEE" + "</th>";
                             slotsTable += "<th>" + "DATE" + "</th>";
@@ -140,15 +140,19 @@ $(function () {
                                 for (var j = 0; j < sessions.length; j++) {
                                     var session = sessions[j];
 
+                                    if (j!=0){
+                                        slotsTable += '<tr>';
+                                    }
                                     slotsTable += '<td>' + session['date'] + '</td>';
                                     slotsTable += '<td>' + session['available_capacity'] + '</td>';
                                     slotsTable += '<td>' + session['min_age_limit'] + '</td>';
                                     slotsTable += '<td>' + session['vaccine'] + '</td>';
                                     slotsTable += '<td>' + session['available_capacity_dose1'] + '</td>';
                                     slotsTable += '<td>' + session['available_capacity_dose2'] + '</td>';
+                                    slotsTable += '</tr>';
                                 }
 
-                                slotsTable += '</tr>';
+                                // slotsTable += '</tr>';
                             }
 
                             slotsTable += "</table>";
