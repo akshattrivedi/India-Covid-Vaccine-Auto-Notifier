@@ -152,7 +152,6 @@ $(function () {
                             }
 
                             slotsTable += "</table>";
-                            console.log(slotsTable);
                             document.getElementById('slots-label').innerHTML = slotsTable;
                         }
                         else {
