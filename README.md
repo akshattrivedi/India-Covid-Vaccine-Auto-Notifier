@@ -2,10 +2,10 @@
 
 A Python-Django based web application that finds the available vaccine slots in real-time from Govt.'s [CoWin website](https://www.cowin.gov.in/home) with auto-refresh functionality to capture slots in every time interval and notifies with a notification sound.
 
+![](stuff/appDemo.gif)
+
 ## Pre-Requisites
 [Python3 with pip3 installation](https://www.python.org/downloads/)
-
-<br>
 
 ## Usage
 * Clone the repository:
