@@ -9,21 +9,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-
-
 notifierService = NotifierService()
 
 def index(request):
-    # global stateName, districtName, pincode, age, inputDate, vaccineType, dose
 
     states = notifierService.getAllStates()
     ages = notifierService.getAllAges()
     vaccines = notifierService.getAllVaccines()
     doses = notifierService.getAllDoses()
 
-    # if request.GET.get('state'):
     if request.method == "POST":
-        # print(request.POST)
         stateName = request.POST.get("state", "")
         districts = notifierService.getAllDistricts(stateName)
         districtName = request.POST.get("district", "")
@@ -45,15 +40,6 @@ def index(request):
             dose = 0
         else:
             dose = int(dose)
-
-        print("State:",stateName,type(stateName))
-        print("District:",districtName,type(districtName))
-        print("Pincode:",pincode,type(pincode))
-        print("Age:",age,type(age))
-        print("Date:",inputDate,type(inputDate))
-        print("VaccineType:",vaccineType,type(vaccineType))
-        print("Dose:",dose,type(dose))
-        print()
 
         slots = notifierService.findSlots(stateName, districtName, pincode, age, inputDate, vaccineType, dose)
 
@@ -98,15 +84,6 @@ def getSlots(request):
             dose = 0
         else:
             dose = int(dose)
-
-        print("State:",stateName,type(stateName))
-        print("District:",districtName,type(districtName))
-        print("Pincode:",pincode,type(pincode))
-        print("Age:",age,type(age))
-        print("Date:",inputDate,type(inputDate))
-        print("VaccineType:",vaccineType,type(vaccineType))
-        print("Dose:",dose,type(dose))
-        print()
 
         slots = notifierService.findSlots(stateName, districtName, pincode, age, inputDate, vaccineType, dose)
         context = {"slots": slots}

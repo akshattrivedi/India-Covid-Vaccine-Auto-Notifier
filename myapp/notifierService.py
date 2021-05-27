@@ -29,8 +29,6 @@ class NotifierService:
         else:
             return ["Input Error!"]
 
-        print(centersList)
-
         return notifierEngine.availability(centersList, age, inputDate, vaccineType, dose)
     
 
