@@ -13,8 +13,12 @@ class Location:
 
     def getStatesList(self) -> list:
         URL = "https://cdn-api.co-vin.in/api/v2/admin/location/states"
-        response = requests.get(URL, headers = self.header)
-        return response.json()["states"]
+        try:
+            response = requests.get(URL, headers = self.header)
+            return response.json()["states"]
+        except requests.exceptions.ConnectionError:
+            print("Connection Refused by the CoWin Server")
+            return []
 
     
     def getStatesNames(self) -> list:
@@ -39,8 +43,12 @@ class Location:
 
     def getDistricts(self, stateID: int) -> list:
         URL = "https://cdn-api.co-vin.in/api/v2/admin/location/districts/" + str(stateID)
-        response = requests.get(URL, headers = self.header)
-        return response.json()["districts"]
+        try:
+            response = requests.get(URL, headers = self.header)
+            return response.json()["districts"]
+        except requests.exceptions.ConnectionError:
+            print("Connection Refused by the CoWin Server")
+            return []
 
     
     def getDistrictsNames(self, stateID: int) -> list:

@@ -138,6 +138,11 @@ $(function () {
 });
 
 function createTabularCenters(centers){
+    if(centers[0] == "Input Error!"){
+        document.getElementById('slots-label').innerHTML = "Input Error!";
+        return;
+    }
+
     if (centers.length > 0) {
         var slotsTable = "<table>";
 

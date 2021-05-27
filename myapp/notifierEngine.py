@@ -52,15 +52,23 @@ class NotifierEngine:
         return centersFilteredList
                                      
 
-    def fetchDataByDistrictID(self, districtID: int) -> dict:
+    def fetchDataByDistrictID(self, districtID: int) -> list:
         URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=" + str(districtID) + "&date=" + self.currentDate()
-        response = requests.get(URL, headers = self.header)
-        return response.json()["centers"]
+        try:
+            response = requests.get(URL, headers = self.header)
+            return response.json()["centers"]
+        except requests.exceptions.ConnectionError:
+            print("Connection Refused by the CoWin Server")
+            return []
 
-    def fetchDataByPINCode(self, pincode: int) -> dict:
+    def fetchDataByPINCode(self, pincode: int) -> list:
         URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + str(pincode) + "&date=" + self.currentDate()
-        response = requests.get(URL, headers = self.header)
-        return response.json()["centers"]
+        try:
+            response = requests.get(URL, headers = self.header)
+            return response.json()["centers"]
+        except requests.exceptions.ConnectionError:
+            print("Connection Refused by the CoWin Server")
+            return []
 
     def currentDate(self) -> str:
         """ Fetches the Today's Date in the Given Format """
