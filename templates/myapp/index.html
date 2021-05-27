@@ -248,11 +248,9 @@
                         <button class="btn btn--radius-2 btn--red" id="auto-refresh" type="submit">Auto Refresh</button>
                     </div>
 
+                    <input type="hidden" id="hidden-slots" value="{{ slots }}">
                     
-                    
-                    <div class="container" id="slots-label">
-                        {{ slots }}
-                    </div>
+                    <div class="container" id="slots-label"></div>
                 </div>
             </div>
         </div>
@@ -267,7 +265,7 @@
 
     <!-- Main JS-->
     <script src="{% static 'js/global.js' %}"></script>
-
+    
 </body>
 
 </html>
