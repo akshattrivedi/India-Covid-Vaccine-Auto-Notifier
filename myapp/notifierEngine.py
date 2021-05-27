@@ -15,11 +15,13 @@ class NotifierEngine:
 
 
     def availability(self, centers: list, age: int, inputDate: str, vaccineType: str, dose: int) -> list: 
-        availabilityList = []
+        centersFilteredList = []
         inputDate = self.changeDateFormat(inputDate)
 
         for center in centers:
             sessions = center["sessions"]
+            sessionsFilteredList = []
+            sessionsCount = 0
             
             for session in sessions:
                 if (dose == 1 and session["available_capacity_dose1"] > 0) or (dose == 2 and session["available_capacity_dose2"] > 0) or (dose == 0 and session["available_capacity"] > 0):
@@ -30,17 +32,24 @@ class NotifierEngine:
                             """ inputDate = "" -> all the future upcoming dates """
                             if vaccineType == session["vaccine"] or vaccineType == "":
                                 """ vaccineType = "" -> all the vaccines are accepted """
-                                center.pop("center_id","")
-                                center.pop("lat","")
-                                center.pop("long","")
-                                center.pop("from","")
-                                center.pop("to","")
                                 session.pop("session_id","")
                                 session.pop("slots","")
 
-                                availabilityList.append(center)
+                                sessionsFilteredList.append(session)
+                                sessionsCount = sessionsCount + 1
 
-        return availabilityList
+            if sessionsCount > 0:
+                center.pop("center_id","")
+                center.pop("lat","")
+                center.pop("long","")
+                center.pop("from","")
+                center.pop("to","")
+
+                center["sessions"] = sessionsFilteredList
+                centersFilteredList.append(center)
+
+
+        return centersFilteredList
                                      
 
     def fetchDataByDistrictID(self, districtID: int) -> dict:
