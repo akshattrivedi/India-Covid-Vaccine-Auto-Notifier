@@ -192,6 +192,11 @@ function createTabularCenters(centers){
 
         slotsTable += "</table>";
         document.getElementById('slots-label').innerHTML = slotsTable;
+
+        // Notification Sound if slots are available
+        var audioUrl = $('#hidden-audio-url').val();
+        const audio = new Audio(audioUrl);
+        audio.play();
     }
     else {
         document.getElementById('slots-label').innerHTML = "NO SLOTS AVAILABLE!";
