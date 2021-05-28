@@ -15,7 +15,7 @@ $ git clone https://github.com/akshattrivedi/India-Covid-Vaccine-Notifier
 
 <br>
 
-* Install all the depedent packages:
+* Install all the dependent packages:
 ```
 $ pip3 install -r requirements.txt
 ```
