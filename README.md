@@ -43,3 +43,5 @@ $ pip3 install -r requirements.txt
 Sorry for the bad UI. I am a backend developer. I tried my best to develop this kind of UI. :sweat_smile:
 
 Would appreciate it if someone contributes towards UI. Thanks! :blush:
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fakshattrivedi%2FIndia-Covid-Vaccine-Auto-Notifier&count_bg=%23FF2066&title_bg=%23555555&icon=ardour.svg&icon_color=%2303DAC6&title=Page+Hits&edge_flat=false)](https://hits.seeyoufarm.com)
