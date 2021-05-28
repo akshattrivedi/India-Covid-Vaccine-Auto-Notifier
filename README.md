@@ -1,4 +1,4 @@
-# India-Covid-Vaccine-Notifier
+# India-Covid-Vaccine-Auto-Notifier
 
 A Python-Django based web application that finds the available vaccine slots in real-time from Govt.'s [CoWin website](https://www.cowin.gov.in/home) with auto-refresh functionality to capture slots in every time interval and notifies with a notification sound.
 
