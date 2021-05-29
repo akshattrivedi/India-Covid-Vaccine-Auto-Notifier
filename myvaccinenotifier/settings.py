@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-2c+_400mlt=x1an$0wg2p7z!!fmuoxrlxxmn*+2!6m1a$^6u#x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['india-covid-vaccine-notifier.herokuapp.com']
+ALLOWED_HOSTS = [
+    'india-covid-vaccine-notifier.herokuapp.com',
+    'localhost',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
