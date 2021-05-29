@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-# import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +26,7 @@ SECRET_KEY = 'django-insecure-2c+_400mlt=x1an$0wg2p7z!!fmuoxrlxxmn*+2!6m1a$^6u#x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['india-covid-vaccine-notifier.herokuapp.com']
 
 
 # Application definition
@@ -134,5 +133,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# django_heroku.settings(locals())
